@@ -1,4 +1,4 @@
-class Hogehoge:
+class Automaton:
     
     @staticmethod
     def birth(cells):
