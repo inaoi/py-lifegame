@@ -24,7 +24,18 @@ class Grid:
         for i in vRange:
             vIndex = i * colCount
             index = vIndex + hRange[0]
-            val[len(val):] = self._slice(index, len(hRange))
+            rowCells = self._slice(index, len(hRange))
+            if x == 0:
+                rowCells[:0] = 0
+            if x == colCount - 1:
+                rowCells.append(0)
+
+            val[len(val):] = rowCells
+        
+        if y == 0:
+            val[:0] = [0, 0, 0]
+        if y == rowCount - 1:
+            val.extend([0, 0, 0])
 
         return val
 
@@ -43,4 +54,3 @@ if __name__ == "__main__":
     grid = Grid(5, 5)
     cells = grid.getMoorNeighborhood(4, 4)
     print(cells)
-    print(grid.copy()._cells)
