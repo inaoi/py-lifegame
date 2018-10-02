@@ -1,15 +1,14 @@
-import Hogehoge
+import threading
+import Grid
 
-class World():
-    def __init__(self):
-        self.grid = grid = [[1] * 5] * 5
+counter = 0
+grid = Grid.Grid(10, 10, lambda x, y: 1)
 
-    def printLines(self):
-        for line in self.grid[1:-1]:
-            print(line)
-        
+def task():
+    grid.draw()
 
-world = World()
-world.printLines()
+    t=threading.Timer(1, task)
+    t.start()
 
-print(Hogehoge.Hogehoge.isBorn([1, 1, 1, 0, 0, 0, 0, 0, 0]))
+t=threading.Thread(target = task)
+t.start()
