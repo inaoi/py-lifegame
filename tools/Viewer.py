@@ -13,3 +13,4 @@ class Viewer:
                 outputData += '\n'
 
         print outputData
+        print "----------------------------"

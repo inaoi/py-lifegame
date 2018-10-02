@@ -9,10 +9,10 @@ class Automaton:
 
     @staticmethod
     def alive(cells):
-        if not cell[5]:
+        if not cells[5]:
             return False
             
-        lives = cells.count(true)
+        lives = cells.count(True)
         return (lives == 2 or lives == 3)
     
     @staticmethod
@@ -20,5 +20,5 @@ class Automaton:
         if not cells[5]:
             return False
 
-        lives = cells.count(true)
+        lives = cells.count(True)
         return (lives <= 1 or 4 <= lives)

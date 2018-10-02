@@ -10,6 +10,7 @@ class Grid:
         self._rowCount = rowCount
         self._colCount = colCount
         self._cells = [initFunc(x, y) for y in range(0, colCount) for x in range(0, rowCount)]
+        self._buff = [self._cells[i] for i in range(0, len(self._cells))]
 
     @property
     def rowCount(self):
@@ -20,7 +21,7 @@ class Grid:
         return self._colCount
 
     def setValue(self, x, y, value):
-        self._cells[y * self._colCount + x] = value
+        self._buff[y * self._colCount + x] = value
     
     def getValue(self, x, y):
         return self._cells[y * self._colCount + x]
@@ -49,6 +50,10 @@ class Grid:
 
     def draw(self):
         self._viewer.draw(self._cells, self._colCount)
+
+    def commit(self):
+        self._cells = self._buff
+        self._buff = [self._cells[i] for i in range(0, len(self._cells))]
 
     def copy(self):
         grid = Grid(self._rowCount, self._colCount)
