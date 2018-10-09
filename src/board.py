@@ -1,9 +1,9 @@
-import ListHelper
+from listHelper import ListHelper
 
 
 class Board:
 
-    _listHelper = ListHelper.ListHelper()
+    _listHelper = ListHelper()
 
     def __init__(self, rowCount, colCount, initFunc):
         self._rowCount = rowCount

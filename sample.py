@@ -1,14 +1,14 @@
 import threading
 import random
-import board
-import Hogehoge
-import viewer
+from src.board import Board
+from src.dice import Automaton
+from src.viewer import Viewer
 
 
 counter = 0
-world = board.Board(50, 50, lambda x, y: random.randrange(0, 2))
-viewer = viewer.Viewer()
-automaton = Hogehoge.Automaton()
+world = Board(50, 50, lambda x, y: random.randrange(0, 2))
+viewer = Viewer()
+automaton = Automaton()
 
 
 def task():
