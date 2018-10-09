@@ -1,7 +1,7 @@
 class ListHelper:
 
     @staticmethod
-    def _fill(target, count, fillData, fillFront = False):
+    def _fill(target, count, fillData, fillFront=False):
         diffCount = count - len(target)
         if diffCount <= 0:
             return target
@@ -11,7 +11,7 @@ class ListHelper:
             target[:0] = appendData
         else:
             target[len(target):] = appendData
-        
+
         return target
 
     @staticmethod

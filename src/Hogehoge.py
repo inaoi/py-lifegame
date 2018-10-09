@@ -2,7 +2,7 @@ class Automaton:
     
     @staticmethod
     def birth(cells):
-        if cells[5]:
+        if cells[5]: 
             return False
 
         return cells.count(True) == 3

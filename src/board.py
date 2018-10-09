@@ -1,28 +1,28 @@
 import ListHelper
-import Viewer
 
-class Grid:
+
+class Board:
 
     _listHelper = ListHelper.ListHelper()
 
     def __init__(self, rowCount, colCount, initFunc):
-        self._viewer = Viewer.Viewer()
         self._rowCount = rowCount
         self._colCount = colCount
-        self._cells = [initFunc(x, y) for y in range(0, colCount) for x in range(0, rowCount)]
+        self._cells = [initFunc(x, y) for y in range(0, colCount)
+                       for x in range(0, rowCount)]
         self._buff = [self._cells[i] for i in range(0, len(self._cells))]
 
     @property
     def rowCount(self):
         return self._rowCount
-        
+
     @property
     def colCount(self):
         return self._colCount
 
     def setValue(self, x, y, value):
         self._buff[y * self._colCount + x] = value
-    
+
     def getValue(self, x, y):
         return self._cells[y * self._colCount + x]
 
@@ -39,31 +39,15 @@ class Grid:
             vIndex = i * colCount
             index = vIndex + hRange[0]
             rowCells = self._listHelper._slice(cells, index, len(hRange))
-            
+
             self._listHelper._fill(rowCells, 3, 0, x == 0)
 
             val[len(val):] = rowCells
-        
+
         self._listHelper._fill(val, 9, 0, y == 0)
 
         return val
 
-    def draw(self):
-        self._viewer.draw(self._cells, self._colCount)
-
     def commit(self):
         self._cells = self._buff
         self._buff = [self._cells[i] for i in range(0, len(self._cells))]
-
-    def copy(self):
-        grid = Grid(self._rowCount, self._colCount)
-        origCells = self._cells
-        grid._cells = [val for val in origCells]
-
-        return grid
-
-if __name__ == "__main__":
-    grid = Grid(5, 5, lambda x, y: y * 5 + x + 1)
-    cells = grid.getMoorNeighborhood(0, 0)
-    print(cells)
-    print(grid.getValue(4, 4))
